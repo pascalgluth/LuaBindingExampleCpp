@@ -31,7 +31,6 @@ LuaScriptComponent::LuaScriptComponent(const std::string& file)
 		.addFunction("GetSomething", &Object::GetSomething)
 		.endClass()
 		.addFunction("GetComponent", &MyApi::GetComponent);
-
 }
 
 LuaScriptComponent::~LuaScriptComponent()
@@ -43,7 +42,7 @@ void LuaScriptComponent::Start()
 {
 	Component::Start();
 
-	luabridge::push<Component*>(m_state, MyApi::GetComponent(m_scriptFile));
+	luabridge::push<Component*>(m_state, this);
 	lua_setglobal(m_state, "this");
 
 	if (luaL_dofile(m_state, m_scriptFile.c_str()) != LUA_OK)
