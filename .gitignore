@@ -1,0 +1,7 @@
+*.exe
+*.pdb
+*.obj
+bin-int
+.vs
+.idea
+.vscode
